@@ -66,18 +66,24 @@ const posts = [
 // 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 
 // Creo il feed dove inserire i post
-const feed = document.getElementById(`container`);
+const feed = document.getElementById("container");
 
 
 // Creo ciclo per poter stampare nell'HTML i post presenti nell'array
 for(i = 0; i < posts.length; i++){
     const singlePost = posts[i];
-    const post = document.getElementById(`template-post`).content.cloneNode(true);
-    post.querySelector(`.post-meta__author`).innerHTML = singlePost.author.name;
-    post.querySelector(`.post-meta__time`).innerHTML = singlePost.created;
-    post.querySelector(`.post__text`).innerHTML = singlePost.content;
-    post.querySelector(`.post__image`).innerHTML = `<img src =${singlePost.media}>`
-    post.querySelector(`.js-likes-counter`).innerHTML = singlePost.likes;
+    const post = document.getElementById("template-post").content.cloneNode(true);
+    post.querySelector(".post-meta__author").innerHTML = singlePost.author.name;
+    post.querySelector(".post-meta__time").innerHTML = singlePost.created;
+    post.querySelector(".post__text").innerHTML = singlePost.content;
+    post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
+    post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
     feed.append(post);
 }
 
+// Aggiungo evento click per il bottone like
+const likeBtn = document.querySelector("js-like-button");
+
+likeBtn.addEventListener('click', function() {
+
+});
