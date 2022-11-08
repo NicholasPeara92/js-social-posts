@@ -71,7 +71,7 @@ const feed = document.getElementById("container");
 
 // Creo ciclo per poter stampare nell'HTML i post presenti nell'array
 for(i = 0; i < posts.length; i++){
-    const singlePost = posts[i];
+    let singlePost = posts[i];
     const post = document.getElementById("template-post").content.cloneNode(true);
     post.querySelector(".post-meta__author").innerHTML = singlePost.author.name;
     post.querySelector(".post-meta__time").innerHTML = singlePost.created;
@@ -79,20 +79,20 @@ for(i = 0; i < posts.length; i++){
     post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
     post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
 
-    // Aggiungo evento click per il bottone like
-    let liked = true;
+    // Aggiungo evento click per il bottone like e incremento o decremento il counter dei likes ad ogni click
     const likeBtn = post.querySelector(".js-like-button");
+    let likesCounter = post.querySelector(".likes__counter b");
+    
+    likesCounter.innerHTML = singlePost.likes;
     likeBtn.addEventListener("click", function(){
-        if ( liked ) {
+        if ( likeBtn.classList.contains("like-button--liked") === false ) {
             likeBtn.classList.add("like-button--liked");
-            singlePost.likes.innerHTML += 1;
-            liked = false;
+            likesCounter.innerHTML = singlePost.likes + 1;
         } else {
             likeBtn.classList.remove("like-button--liked");
-            singlePost.likes.innerHTML -= 1;
-            liked = true;
+            likesCounter.innerHTML = singlePost.likes;
         }
-        console.log(singlePost.likes)
+        console.log(likesCounter)
     });
 
     feed.append(post);
