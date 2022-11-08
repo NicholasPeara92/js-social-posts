@@ -69,6 +69,7 @@ const posts = [
 const feed = document.getElementById("container");
 
 
+const likesArray = [];
 // Creo ciclo per poter stampare nell'HTML i post presenti nell'array
 for(i = 0; i < posts.length; i++){
     let singlePost = posts[i];
@@ -78,25 +79,32 @@ for(i = 0; i < posts.length; i++){
     post.querySelector(".post__text").innerHTML = singlePost.content;
     post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
     post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
+    
 
     // Aggiungo evento click per il bottone like e incremento o decremento il counter dei likes ad ogni click
-    const likeBtn = post.querySelector(".js-like-button");
+    const likeBtn = post.querySelector(".like-button.js-like-button");
     let likesCounter = post.querySelector(".likes__counter b");
+    const postId = singlePost.id;
+    likeBtn.setAttribute('data-postid', singlePost.id);
     
     likesCounter.innerHTML = singlePost.likes;
     likeBtn.addEventListener("click", function(){
         if ( likeBtn.classList.contains("like-button--liked") === false ) {
             likeBtn.classList.add("like-button--liked");
             likesCounter.innerHTML = singlePost.likes + 1;
+            likesArray.push(postId);
         } else {
             likeBtn.classList.remove("like-button--liked");
             likesCounter.innerHTML = singlePost.likes;
+
         }
         console.log(likesCounter)
     });
 
     feed.append(post);
 }
+console.log(likesArray);
+
 
 
 
