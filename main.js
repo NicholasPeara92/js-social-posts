@@ -64,3 +64,20 @@ const posts = [
 // 1. Formattare le date in formato italiano (gg/mm/aaaa)
 // 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
 // 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+
+// Creo il feed dove inserire i post
+const feed = document.getElementById(`container`);
+
+
+// Creo ciclo per poter stampare nell'HTML i post presenti nell'array
+for(i = 0; i < posts.length; i++){
+    const singlePost = posts[i];
+    const post = document.getElementById(`template-post`).content.cloneNode(true);
+    post.querySelector(`.post-meta__author`).innerHTML = singlePost.author.name;
+    post.querySelector(`.post-meta__time`).innerHTML = singlePost.created;
+    post.querySelector(`.post__text`).innerHTML = singlePost.content;
+    post.querySelector(`.post__image`).innerHTML = `<img src =${singlePost.media}>`
+    post.querySelector(`.js-likes-counter`).innerHTML = singlePost.likes;
+    feed.append(post);
+}
+
