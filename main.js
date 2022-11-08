@@ -78,12 +78,25 @@ for(i = 0; i < posts.length; i++){
     post.querySelector(".post__text").innerHTML = singlePost.content;
     post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
     post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
+
+    // Aggiungo evento click per il bottone like
+    let liked = true;
+    const likeBtn = post.querySelector(".js-like-button");
+    likeBtn.addEventListener("click", function(){
+        if ( liked ) {
+            likeBtn.classList.add("like-button--liked");
+            singlePost.likes.innerHTML += 1;
+            liked = false;
+        } else {
+            likeBtn.classList.remove("like-button--liked");
+            singlePost.likes.innerHTML -= 1;
+            liked = true;
+        }
+        console.log(singlePost.likes)
+    });
+
     feed.append(post);
 }
 
-// Aggiungo evento click per il bottone like
-const likeBtn = document.querySelector("js-like-button");
 
-likeBtn.addEventListener('click', function() {
 
-});
