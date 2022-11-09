@@ -79,7 +79,7 @@ for(i = 0; i < posts.length; i++){
     post.querySelector(".post__text").innerHTML = singlePost.content;
     post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
     post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
-    
+    post.querySelector(".profile-pic").src = singlePost.author.image;
 
     // Aggiungo evento click per il bottone like e incremento o decremento il counter dei likes ad ogni click
     const likeBtn = post.querySelector(".like-button.js-like-button");
@@ -96,7 +96,7 @@ for(i = 0; i < posts.length; i++){
         } else {
             likeBtn.classList.remove("like-button--liked");
             likesCounter.innerHTML = singlePost.likes;
-
+            likesArray.splice(postId);
         }
         console.log(likesCounter)
     });
