@@ -75,7 +75,7 @@ for(i = 0; i < posts.length; i++){
     let singlePost = posts[i];
     const post = document.getElementById("template-post").content.cloneNode(true);
     post.querySelector(".post-meta__author").innerHTML = singlePost.author.name;
-    post.querySelector(".post-meta__time").innerHTML = singlePost.created;
+    post.querySelector(".post-meta__time").innerHTML = new Date(singlePost.created).toLocaleDateString();
     post.querySelector(".post__text").innerHTML = singlePost.content;
     post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
     post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
@@ -99,9 +99,9 @@ for(i = 0; i < posts.length; i++){
         } else {
             likeBtn.classList.remove("like-button--liked");
             likesCounter.innerHTML = singlePost.likes;
-            likesArray.splice(postId);
+            // likesArray.splice(postId);
         }
-        console.log(likesCounter)
+        // console.log(likesCounter)
     });
 
     feed.append(post);
