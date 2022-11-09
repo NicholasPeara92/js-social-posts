@@ -80,12 +80,15 @@ for(i = 0; i < posts.length; i++){
     post.querySelector(".post__image").innerHTML = `<img src =${singlePost.media}>`
     post.querySelector(".js-likes-counter").innerHTML = singlePost.likes;
     post.querySelector(".profile-pic").src = singlePost.author.image;
+    post.querySelector(".profile-pic").alt = singlePost.author.image;
+
+
 
     // Aggiungo evento click per il bottone like e incremento o decremento il counter dei likes ad ogni click
-    const likeBtn = post.querySelector(".like-button.js-like-button");
+    let likeBtn = post.querySelector(".like-button.js-like-button");
+    likeBtn.setAttribute('data-postid', singlePost.id);
     let likesCounter = post.querySelector(".likes__counter b");
     const postId = singlePost.id;
-    likeBtn.setAttribute('data-postid', singlePost.id);
     
     likesCounter.innerHTML = singlePost.likes;
     likeBtn.addEventListener("click", function(){
